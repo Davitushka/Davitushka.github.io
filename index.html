@@ -31,7 +31,10 @@
       <button class="tab" role="tab" data-tab="contact" data-i18n="tab_contact">Contact</button>
     </nav>
     <div class="top-actions">
-      <button class="lang-switch" id="langSwitch" type="button" aria-label="Switch language">RU</button>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button class="lang-opt is-active" type="button" data-lang="ru">RU</button>
+        <button class="lang-opt" type="button" data-lang="en">EN</button>
+      </div>
       <a class="gh-link" href="https://github.com/Davitushka" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
   </header>
@@ -69,7 +72,7 @@
       <h2 class="section-title" data-i18n="projects_title">Projects</h2>
       <div class="cards">
 
-        <article class="card">
+        <article class="card card-clickable" data-project="thread-sync" tabindex="0" role="button" aria-label="thread-sync">
           <div class="card-shot placeholder" data-label="thread-sync — add screenshot">
             <img src="assets/thread-sync.png" alt="thread-sync SOC dashboard" loading="lazy"
                  onerror="this.style.display='none';this.parentElement.classList.add('empty')" />
@@ -88,11 +91,12 @@
             <div class="card-tags">
               <span>Rust</span><span>React</span><span>ClickHouse</span><span>Kafka</span><span>Grafana</span>
             </div>
-            <a class="card-link" href="https://github.com/Davitushka/thread-sync" target="_blank" rel="noopener" data-i18n="ts_link">Repository ↗</a>
+            <span class="card-hint" data-i18n="card_hint">Click to preview code ↗</span>
+            <a class="card-link" href="https://github.com/Davitushka/thread-sync" target="_blank" rel="noopener" data-i18n="ts_link" data-stop-prop>Repository ↗</a>
           </div>
         </article>
 
-        <article class="card">
+        <article class="card card-clickable" data-project="protonoro-timer" tabindex="0" role="button" aria-label="Protonoro Timer">
           <div class="card-shot placeholder" data-label="Protonoro Timer — add screenshot">
             <img src="assets/protonoro-timer.png" alt="Protonoro Timer app" loading="lazy"
                  onerror="this.style.display='none';this.parentElement.classList.add('empty')" />
@@ -111,7 +115,8 @@
             <div class="card-tags">
               <span>.NET</span><span>React</span><span>TypeScript</span>
             </div>
-            <a class="card-link" href="https://protonoro.com/" target="_blank" rel="noopener" data-i18n="pt_link">Open the app ↗</a>
+            <span class="card-hint" data-i18n="card_hint_app">Click to see details ↗</span>
+            <a class="card-link" href="https://protonoro.com/" target="_blank" rel="noopener" data-i18n="pt_link" data-stop-prop>Open the app ↗</a>
           </div>
         </article>
 
@@ -184,6 +189,26 @@
   <footer class="footer">
     <span>© <span id="year"></span> Senri · <span data-i18n="footer">Built with care</span></span>
   </footer>
+
+  <div class="modal" id="projectModal" hidden aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close">×</button>
+      <div class="modal-head">
+        <h3 id="modalTitle"></h3>
+        <span class="pill" id="modalPill"></span>
+      </div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <ul class="modal-meta" id="modalMeta"></ul>
+      <div class="modal-code-wrap" id="modalCodeWrap" hidden>
+        <div class="modal-code-label" data-i18n="modal_code_label">Code preview</div>
+        <pre class="modal-code"><code id="modalCode"></code></pre>
+        <div class="modal-code-file" id="modalCodeFile"></div>
+      </div>
+      <p class="modal-private" id="modalPrivate" hidden data-i18n="modal_private">Source code is private — you can only try the live app.</p>
+      <div class="modal-actions" id="modalActions"></div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@3/tsparticles.slim.bundle.min.js"></script>
   <script src="app.js"></script>
