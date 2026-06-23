@@ -1,0 +1,26 @@
+<div class="modal" id="projectModal" hidden aria-hidden="true">
+  <div class="modal-backdrop" data-close-modal></div>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" type="button" data-close-modal aria-label="Close">×</button>
+    <div class="modal-head">
+      <h3 id="modalTitle"></h3>
+      <span class="pill" id="modalPill"></span>
+    </div>
+    <p class="modal-desc" id="modalDesc"></p>
+    <ul class="modal-meta" id="modalMeta"></ul>
+    <div class="modal-code-wrap" id="modalCodeWrap" hidden>
+      <div class="code-tabs-head">
+        <div class="code-tabs" id="codeTabs" role="tablist">
+          <button type="button" class="code-tab is-active" data-snippet="detect_format">detect_format</button>
+          <button type="button" class="code-tab" data-snippet="parse">parse</button>
+          <button type="button" class="code-tab" data-snippet="handle_parse">handle_parse</button>
+        </div>
+        <button type="button" class="btn ghost sm" id="codeCopyBtn" data-i18n="code_copy">Copy</button>
+      </div>
+      <pre class="modal-code"><code id="modalCode"></code></pre>
+      <div class="modal-code-file" id="modalCodeFile"></div>
+    </div>
+    <p class="modal-private" id="modalPrivate" hidden data-i18n="modal_private">Source code is private.</p>
+    <div class="modal-actions" id="modalActions"></div>
+  </div>
+</div>

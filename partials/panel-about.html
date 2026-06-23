@@ -1,0 +1,44 @@
+<section class="panel is-active" id="about" role="tabpanel">
+  <p class="eyebrow" data-i18n="eyebrow">Full-stack developer @ <a href="https://protonoro.com/" target="_blank" rel="noopener">Protonoro</a></p>
+  <h1 class="hero-title" data-i18n="hero">Hi, I'm <span class="grad">Senri</span> <span class="wave">👋</span></h1>
+  <p class="typed-line"><span id="typed"></span><span class="caret">|</span></p>
+  <p class="lead" data-i18n="lead">I build production tooling end to end.</p>
+  <div class="about-block">
+    <p class="about-text" data-i18n="about_story"></p>
+    <ul class="about-list" data-i18n="about_focus"></ul>
+    <p class="about-now" data-i18n="about_now"></p>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><span class="stat-num" data-count="3">0</span><span class="stat-label" data-i18n="stat_years">Years coding</span></div>
+    <div class="stat"><span class="stat-num" data-count="160">0</span><span class="stat-label" data-i18n="stat_contrib">Contributions / yr</span></div>
+    <div class="stat"><span class="stat-num" data-count="9">0</span><span class="stat-label" data-i18n="stat_repos">Repositories</span></div>
+    <div class="stat"><span class="stat-num" data-count="2">0</span><span class="stat-label" data-i18n="stat_products">Live products</span></div>
+  </div>
+  <div class="cta-row">
+    <a class="btn primary" href="#" data-tab="projects" data-i18n="cta_projects">View projects</a>
+    <a class="btn primary alt" href="#" data-tab="playground" data-i18n="cta_playground">Try log parser</a>
+    <a class="btn ghost" href="https://protonoro.com/" target="_blank" rel="noopener">protonoro.com</a>
+  </div>
+  <div class="pipeline-map-section">
+    <h3 class="subsection-title" data-i18n="map_title">How thread-sync works</h3>
+    <p class="map-hint" data-i18n="map_hint">Click a node to see what it does</p>
+    <div class="pipeline-map" id="pipelineMap">
+      <button type="button" class="pipe-node" data-node="apps">Apps</button>
+      <span class="pipe-arrow">→</span>
+      <button type="button" class="pipe-node" data-node="vector">Vector</button>
+      <span class="pipe-arrow">→</span>
+      <button type="button" class="pipe-node" data-node="kafka">Kafka</button>
+      <span class="pipe-arrow">→</span>
+      <button type="button" class="pipe-node" data-node="parser">Rust Parser</button>
+      <span class="pipe-arrow">→</span>
+      <button type="button" class="pipe-node" data-node="clickhouse">ClickHouse</button>
+      <span class="pipe-arrow">→</span>
+      <button type="button" class="pipe-node" data-node="portal">SOC / Grafana</button>
+    </div>
+    <div class="pipe-detail" id="pipeDetail" hidden>
+      <strong id="pipeDetailTitle"></strong>
+      <p id="pipeDetailDesc"></p>
+    </div>
+    <a class="btn ghost sm map-cta" href="#" data-tab="playground" data-i18n="map_cta">Try the parser ↗</a>
+  </div>
+</section>

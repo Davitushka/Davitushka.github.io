@@ -11,15 +11,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=4" />
+  <link rel="stylesheet" href="styles.css?v=5" />
 </head>
 <body>
-  <!-- Animated background layers -->
   <div id="bg-gradient" aria-hidden="true"></div>
   <video id="bg-video" aria-hidden="true" autoplay muted loop playsinline></video>
   <div id="tsparticles" aria-hidden="true"></div>
 
-  <!-- Header / nav tabs -->
   <header class="topbar">
     <a class="brand" href="#" data-tab="about">
       <span class="brand-dot"></span> Senri
@@ -40,254 +38,20 @@
     </div>
   </header>
 
-  <main class="stage">
-
-    <!-- ABOUT -->
-    <section class="panel is-active" id="about" role="tabpanel">
-      <p class="eyebrow" data-i18n="eyebrow">Full-stack developer @ <a href="https://protonoro.com/" target="_blank" rel="noopener">Protonoro</a></p>
-      <h1 class="hero-title" data-i18n="hero">Hi, I'm <span class="grad">Senri</span> <span class="wave">👋</span></h1>
-      <p class="typed-line"><span id="typed"></span><span class="caret">|</span></p>
-      <p class="lead" data-i18n="lead">
-        I build production tooling end to end — Rust parsing pipelines and SIEM backends,
-        React portals, and the Docker/Kubernetes setups that keep them running. Right now
-        I'm co-building products at
-        <a href="https://protonoro.com/" target="_blank" rel="noopener">Protonoro</a>.
-        I care about clean architecture, real-time data, and shipping things people actually use.
-      </p>
-
-      <div class="about-block">
-        <p class="about-text" data-i18n="about_story"></p>
-        <ul class="about-list" data-i18n="about_focus"></ul>
-        <p class="about-now" data-i18n="about_now"></p>
-      </div>
-
-      <div class="stat-row">
-        <div class="stat"><span class="stat-num" data-count="3">0</span><span class="stat-label" data-i18n="stat_years">Years coding</span></div>
-        <div class="stat"><span class="stat-num" data-count="160">0</span><span class="stat-label" data-i18n="stat_contrib">Contributions / yr</span></div>
-        <div class="stat"><span class="stat-num" data-count="9">0</span><span class="stat-label" data-i18n="stat_repos">Repositories</span></div>
-        <div class="stat"><span class="stat-num" data-count="2">0</span><span class="stat-label" data-i18n="stat_products">Live products</span></div>
-      </div>
-
-      <div class="cta-row">
-        <a class="btn primary" href="#" data-tab="projects" data-i18n="cta_projects">View projects</a>
-        <a class="btn primary alt" href="#" data-tab="playground" data-i18n="cta_playground">Try log parser</a>
-        <a class="btn ghost" href="https://protonoro.com/" target="_blank" rel="noopener">protonoro.com</a>
-      </div>
-
-      <div class="pipeline-map-section">
-        <h3 class="subsection-title" data-i18n="map_title">How thread-sync works</h3>
-        <p class="map-hint" data-i18n="map_hint">Click a node to see what it does</p>
-        <div class="pipeline-map" id="pipelineMap">
-          <button type="button" class="pipe-node" data-node="apps">Apps</button>
-          <span class="pipe-arrow">→</span>
-          <button type="button" class="pipe-node" data-node="vector">Vector</button>
-          <span class="pipe-arrow">→</span>
-          <button type="button" class="pipe-node" data-node="kafka">Kafka</button>
-          <span class="pipe-arrow">→</span>
-          <button type="button" class="pipe-node" data-node="parser">Rust Parser</button>
-          <span class="pipe-arrow">→</span>
-          <button type="button" class="pipe-node" data-node="clickhouse">ClickHouse</button>
-          <span class="pipe-arrow">→</span>
-          <button type="button" class="pipe-node" data-node="portal">SOC / Grafana</button>
-        </div>
-        <div class="pipe-detail" id="pipeDetail" hidden>
-          <strong id="pipeDetailTitle"></strong>
-          <p id="pipeDetailDesc"></p>
-        </div>
-        <a class="btn ghost sm map-cta" href="#" data-tab="playground" data-i18n="map_cta">Try the parser ↗</a>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section class="panel" id="projects" role="tabpanel">
-      <h2 class="section-title" data-i18n="projects_title">Projects</h2>
-      <div class="cards">
-
-        <article class="card card-clickable" data-project="thread-sync" tabindex="0" role="button" aria-label="thread-sync">
-          <div class="card-shot placeholder" data-label="thread-sync — add screenshot">
-            <img src="assets/thread-sync.png" alt="thread-sync SOC dashboard" loading="lazy"
-                 onerror="this.style.display='none';this.parentElement.classList.add('empty')" />
-          </div>
-          <div class="card-body">
-            <div class="card-head">
-              <h3>thread-sync</h3>
-              <span class="pill" data-i18n="pill_oss">Open source</span>
-            </div>
-            <p data-i18n="ts_desc">My production-grade SIEM for microservice environments — I wrote the Rust parser, the React SOC portal, and the ClickHouse / Kafka / Grafana pipeline behind it.</p>
-            <ul class="card-meta">
-              <li>10k - 50k EPS</li>
-              <li>alerts &le; 30s</li>
-              <li>parse &lt;5ms p99</li>
-            </ul>
-            <div class="card-tags">
-              <span>Rust</span><span>React</span><span>ClickHouse</span><span>Kafka</span><span>Grafana</span>
-            </div>
-            <span class="card-hint" data-i18n="card_hint">Click to preview code ↗</span>
-            <a class="card-link" href="https://github.com/Davitushka/thread-sync" target="_blank" rel="noopener" data-i18n="ts_link" data-stop-prop>Repository ↗</a>
-          </div>
-        </article>
-
-        <article class="card card-clickable" data-project="protonoro-timer" tabindex="0" role="button" aria-label="Protonoro Timer">
-          <div class="card-shot placeholder" data-label="Protonoro Timer — add screenshot">
-            <img src="assets/protonoro-timer.png" alt="Protonoro Timer app" loading="lazy"
-                 onerror="this.style.display='none';this.parentElement.classList.add('empty')" />
-          </div>
-          <div class="card-body">
-            <div class="card-head">
-              <h3>Protonoro Timer</h3>
-              <span class="pill alt" data-i18n="pill_product">Product</span>
-            </div>
-            <p data-i18n="pt_desc">A full-stack productivity timer I'm building at Protonoro — frontend and backend for daily focus workflows. It's a commercial product, so the source stays private.</p>
-            <ul class="card-meta">
-              <li>Full-stack</li>
-              <li>Real-time</li>
-              <li data-i18n="pt_meta3">Team focus</li>
-            </ul>
-            <div class="card-tags">
-              <span>.NET</span><span>React</span><span>TypeScript</span>
-            </div>
-            <span class="card-hint" data-i18n="card_hint_app">Click to see details ↗</span>
-            <a class="card-link" href="https://protonoro.com/" target="_blank" rel="noopener" data-i18n="pt_link" data-stop-prop>Open the app ↗</a>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- PLAYGROUND -->
-    <section class="panel" id="playground" role="tabpanel">
-      <h2 class="section-title" data-i18n="pg_title">Live log parser</h2>
-      <p class="lead pg-lead" data-i18n="pg_lead">Paste a log line — the same format detection logic from my thread-sync Rust parser, running in your browser.</p>
-
-      <div class="pg-examples">
-        <button class="btn ghost sm" type="button" data-example="json" data-i18n="pg_ex_json">JSON event</button>
-        <button class="btn ghost sm" type="button" data-example="cef" data-i18n="pg_ex_cef">CEF alert</button>
-        <button class="btn ghost sm" type="button" data-example="syslog" data-i18n="pg_ex_syslog">Syslog line</button>
-      </div>
-
-      <textarea id="pgInput" class="pg-input" rows="4" spellcheck="false" placeholder='{"event":"login","user":"admin"}'></textarea>
-      <button class="btn primary" type="button" id="pgParse" data-i18n="pg_parse">Parse</button>
-
-      <div class="pipeline" id="pgPipeline" aria-hidden="true">
-        <span class="pipeline-step" data-i18n="pg_step_ingest">ingest</span>
-        <span class="pipeline-arrow">→</span>
-        <span class="pipeline-step" data-i18n="pg_step_detect">detect</span>
-        <span class="pipeline-arrow">→</span>
-        <span class="pipeline-step" data-i18n="pg_step_normalize">normalize</span>
-        <span class="pipeline-arrow">→</span>
-        <span class="pipeline-step" data-i18n="pg_step_kafka">Kafka</span>
-        <span class="pipeline-arrow">→</span>
-        <span class="pipeline-step" data-i18n="pg_step_ch">ClickHouse</span>
-      </div>
-
-      <div class="pg-result" id="pgResult" hidden>
-        <div class="pg-row">
-          <span class="pg-label" data-i18n="pg_format">Detected format</span>
-          <div id="pgFormat"></div>
-        </div>
-        <div class="pg-row">
-          <span class="pg-label" data-i18n="pg_output">Normalized preview</span>
-          <pre class="pg-output"><code id="pgOutput"></code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- STACK -->
-    <section class="panel" id="stack" role="tabpanel">
-      <h2 class="section-title" data-i18n="stack_title">Technology stack</h2>
-
-      <div class="stack-group">
-        <h4 data-i18n="stack_lang">Languages</h4>
-        <div class="chips">
-          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg" alt="">Rust</span>
-          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">TypeScript</span>
-          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="">Python</span>
-          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" alt="">.NET</span>
-        </div>
-      </div>
-
-      <div class="stack-group">
-        <h4 data-i18n="stack_front">Frontend</h4>
-        <div class="chips">
-          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">React</span>
-          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" alt="">Vite</span>
-          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tauri/tauri-original.svg" alt="">Tauri</span>
-        </div>
-      </div>
-
-      <div class="stack-group">
-        <h4 data-i18n="stack_data">Data &amp; messaging</h4>
-        <div class="chips">
-          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/clickhouse/clickhouse-original.svg" alt="">ClickHouse</span>
-          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="">PostgreSQL</span>
-          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="">Redis</span>
-          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg" alt="">Kafka</span>
-        </div>
-      </div>
-
-      <div class="stack-group">
-        <h4 data-i18n="stack_ops">Ops &amp; observability</h4>
-        <div class="chips">
-          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="">Docker</span>
-          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="">Kubernetes</span>
-          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" alt="">Prometheus</span>
-          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" alt="">Grafana</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="panel" id="contact" role="tabpanel">
-      <h2 class="section-title" data-i18n="contact_title">Get in touch</h2>
-      <p class="lead" data-i18n="contact_lead">I'm open to collaboration and interesting problems in real-time systems, security analytics and platform engineering. Drop me a line — I read everything.</p>
-      <div class="contact-grid">
-        <a class="contact-card" href="https://protonoro.com/" target="_blank" rel="noopener">
-          <span class="contact-ico">🌐</span><span class="contact-k" data-i18n="c_website">Website</span><span class="contact-v">protonoro.com</span>
-        </a>
-        <a class="contact-card" href="mailto:aid128638caides@gmail.com">
-          <span class="contact-ico">✉️</span><span class="contact-k" data-i18n="c_email">Email</span><span class="contact-v">aid128638caides@gmail.com</span>
-        </a>
-        <a class="contact-card" href="https://github.com/Davitushka" target="_blank" rel="noopener">
-          <span class="contact-ico">🐙</span><span class="contact-k">GitHub</span><span class="contact-v">@Davitushka</span>
-        </a>
-      </div>
-    </section>
-
-  </main>
+  <main class="stage"></main>
 
   <footer class="footer">
     <span>© <span id="year"></span> Senri · <span data-i18n="footer">Built with care</span></span>
   </footer>
 
-  <div class="modal" id="projectModal" hidden aria-hidden="true">
-    <div class="modal-backdrop" data-close-modal></div>
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" type="button" data-close-modal aria-label="Close">×</button>
-      <div class="modal-head">
-        <h3 id="modalTitle"></h3>
-        <span class="pill" id="modalPill"></span>
-      </div>
-      <p class="modal-desc" id="modalDesc"></p>
-      <ul class="modal-meta" id="modalMeta"></ul>
-      <div class="modal-code-wrap" id="modalCodeWrap" hidden>
-        <div class="code-tabs-head">
-          <div class="code-tabs" id="codeTabs" role="tablist">
-            <button type="button" class="code-tab is-active" data-snippet="detect_format">detect_format</button>
-            <button type="button" class="code-tab" data-snippet="parse">parse</button>
-            <button type="button" class="code-tab" data-snippet="handle_parse">handle_parse</button>
-          </div>
-          <button type="button" class="btn ghost sm" id="codeCopyBtn" data-i18n="code_copy">Copy</button>
-        </div>
-        <pre class="modal-code"><code id="modalCode"></code></pre>
-        <div class="modal-code-file" id="modalCodeFile"></div>
-      </div>
-      <p class="modal-private" id="modalPrivate" hidden data-i18n="modal_private">Source code is private — you can only try the live app.</p>
-      <div class="modal-actions" id="modalActions"></div>
-    </div>
-  </div>
-
   <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@3/tsparticles.slim.bundle.min.js"></script>
-  <script src="parser-demo.js?v=4"></script>
-  <script src="app.js?v=4"></script>
+  <script src="parser-demo.js?v=5"></script>
+  <script src="js/data-snippets.js?v=5"></script>
+  <script src="js/data-pipeline.js?v=5"></script>
+  <script src="js/i18n.js?v=5"></script>
+  <script src="js/ui.js?v=5"></script>
+  <script src="js/modal.js?v=5"></script>
+  <script src="js/playground.js?v=5"></script>
+  <script src="js/app.js?v=5"></script>
 </body>
 </html>
