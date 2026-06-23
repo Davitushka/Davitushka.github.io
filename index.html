@@ -25,22 +25,25 @@
       <span class="brand-dot"></span> Senri
     </a>
     <nav class="tabs" role="tablist">
-      <button class="tab is-active" role="tab" data-tab="about">About</button>
-      <button class="tab" role="tab" data-tab="projects">Projects</button>
-      <button class="tab" role="tab" data-tab="stack">Stack</button>
-      <button class="tab" role="tab" data-tab="contact">Contact</button>
+      <button class="tab is-active" role="tab" data-tab="about" data-i18n="tab_about">About</button>
+      <button class="tab" role="tab" data-tab="projects" data-i18n="tab_projects">Projects</button>
+      <button class="tab" role="tab" data-tab="stack" data-i18n="tab_stack">Stack</button>
+      <button class="tab" role="tab" data-tab="contact" data-i18n="tab_contact">Contact</button>
     </nav>
-    <a class="gh-link" href="https://github.com/Davitushka" target="_blank" rel="noopener">GitHub ↗</a>
+    <div class="top-actions">
+      <button class="lang-switch" id="langSwitch" type="button" aria-label="Switch language">RU</button>
+      <a class="gh-link" href="https://github.com/Davitushka" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
   </header>
 
   <main class="stage">
 
     <!-- ABOUT -->
     <section class="panel is-active" id="about" role="tabpanel">
-      <p class="eyebrow">Full-stack developer @ <a href="https://protonoro.com/" target="_blank" rel="noopener">Protonoro</a></p>
-      <h1 class="hero-title">Hi, I'm <span class="grad">Senri</span> <span class="wave">👋</span></h1>
+      <p class="eyebrow" data-i18n="eyebrow">Full-stack developer @ <a href="https://protonoro.com/" target="_blank" rel="noopener">Protonoro</a></p>
+      <h1 class="hero-title" data-i18n="hero">Hi, I'm <span class="grad">Senri</span> <span class="wave">👋</span></h1>
       <p class="typed-line"><span id="typed"></span><span class="caret">|</span></p>
-      <p class="lead">
+      <p class="lead" data-i18n="lead">
         I build production tooling end to end — Rust parsing pipelines and SIEM backends,
         React portals, and the Docker/Kubernetes setups that keep them running. Right now
         I'm co-building products at
@@ -49,21 +52,21 @@
       </p>
 
       <div class="stat-row">
-        <div class="stat"><span class="stat-num" data-count="3">0</span><span class="stat-label">Years coding</span></div>
-        <div class="stat"><span class="stat-num" data-count="160">0</span><span class="stat-label">Contributions / yr</span></div>
-        <div class="stat"><span class="stat-num" data-count="9">0</span><span class="stat-label">Repositories</span></div>
-        <div class="stat"><span class="stat-num" data-count="2">0</span><span class="stat-label">Live products</span></div>
+        <div class="stat"><span class="stat-num" data-count="3">0</span><span class="stat-label" data-i18n="stat_years">Years coding</span></div>
+        <div class="stat"><span class="stat-num" data-count="160">0</span><span class="stat-label" data-i18n="stat_contrib">Contributions / yr</span></div>
+        <div class="stat"><span class="stat-num" data-count="9">0</span><span class="stat-label" data-i18n="stat_repos">Repositories</span></div>
+        <div class="stat"><span class="stat-num" data-count="2">0</span><span class="stat-label" data-i18n="stat_products">Live products</span></div>
       </div>
 
       <div class="cta-row">
-        <a class="btn primary" href="#" data-tab="projects">View projects</a>
+        <a class="btn primary" href="#" data-tab="projects" data-i18n="cta_projects">View projects</a>
         <a class="btn ghost" href="https://protonoro.com/" target="_blank" rel="noopener">protonoro.com</a>
       </div>
     </section>
 
     <!-- PROJECTS -->
     <section class="panel" id="projects" role="tabpanel">
-      <h2 class="section-title">Projects</h2>
+      <h2 class="section-title" data-i18n="projects_title">Projects</h2>
       <div class="cards">
 
         <article class="card">
@@ -74,9 +77,9 @@
           <div class="card-body">
             <div class="card-head">
               <h3>thread-sync</h3>
-              <span class="pill">Open source</span>
+              <span class="pill" data-i18n="pill_oss">Open source</span>
             </div>
-            <p>My production-grade SIEM for microservice environments — I wrote the Rust parser, the React SOC portal, and the ClickHouse / Kafka / Grafana pipeline behind it.</p>
+            <p data-i18n="ts_desc">My production-grade SIEM for microservice environments — I wrote the Rust parser, the React SOC portal, and the ClickHouse / Kafka / Grafana pipeline behind it.</p>
             <ul class="card-meta">
               <li>10k - 50k EPS</li>
               <li>alerts &le; 30s</li>
@@ -85,7 +88,7 @@
             <div class="card-tags">
               <span>Rust</span><span>React</span><span>ClickHouse</span><span>Kafka</span><span>Grafana</span>
             </div>
-            <a class="card-link" href="https://github.com/Davitushka/thread-sync" target="_blank" rel="noopener">Repository ↗</a>
+            <a class="card-link" href="https://github.com/Davitushka/thread-sync" target="_blank" rel="noopener" data-i18n="ts_link">Repository ↗</a>
           </div>
         </article>
 
@@ -97,18 +100,18 @@
           <div class="card-body">
             <div class="card-head">
               <h3>Protonoro Timer</h3>
-              <span class="pill alt">Product</span>
+              <span class="pill alt" data-i18n="pill_product">Product</span>
             </div>
-            <p>A full-stack productivity timer I'm building at Protonoro — frontend and backend for daily focus workflows. It's a commercial product, so the source stays private.</p>
+            <p data-i18n="pt_desc">A full-stack productivity timer I'm building at Protonoro — frontend and backend for daily focus workflows. It's a commercial product, so the source stays private.</p>
             <ul class="card-meta">
               <li>Full-stack</li>
               <li>Real-time</li>
-              <li>Team focus</li>
+              <li data-i18n="pt_meta3">Team focus</li>
             </ul>
             <div class="card-tags">
               <span>.NET</span><span>React</span><span>TypeScript</span>
             </div>
-            <a class="card-link" href="https://protonoro.com/" target="_blank" rel="noopener">Open the app ↗</a>
+            <a class="card-link" href="https://protonoro.com/" target="_blank" rel="noopener" data-i18n="pt_link">Open the app ↗</a>
           </div>
         </article>
 
@@ -117,10 +120,10 @@
 
     <!-- STACK -->
     <section class="panel" id="stack" role="tabpanel">
-      <h2 class="section-title">Technology stack</h2>
+      <h2 class="section-title" data-i18n="stack_title">Technology stack</h2>
 
       <div class="stack-group">
-        <h4>Languages</h4>
+        <h4 data-i18n="stack_lang">Languages</h4>
         <div class="chips">
           <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg" alt="">Rust</span>
           <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">TypeScript</span>
@@ -130,7 +133,7 @@
       </div>
 
       <div class="stack-group">
-        <h4>Frontend</h4>
+        <h4 data-i18n="stack_front">Frontend</h4>
         <div class="chips">
           <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">React</span>
           <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" alt="">Vite</span>
@@ -139,7 +142,7 @@
       </div>
 
       <div class="stack-group">
-        <h4>Data &amp; messaging</h4>
+        <h4 data-i18n="stack_data">Data &amp; messaging</h4>
         <div class="chips">
           <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/clickhouse/clickhouse-original.svg" alt="">ClickHouse</span>
           <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="">PostgreSQL</span>
@@ -149,7 +152,7 @@
       </div>
 
       <div class="stack-group">
-        <h4>Ops &amp; observability</h4>
+        <h4 data-i18n="stack_ops">Ops &amp; observability</h4>
         <div class="chips">
           <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="">Docker</span>
           <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="">Kubernetes</span>
@@ -161,20 +164,17 @@
 
     <!-- CONTACT -->
     <section class="panel" id="contact" role="tabpanel">
-      <h2 class="section-title">Get in touch</h2>
-      <p class="lead">I'm open to collaboration and interesting problems in real-time systems, security analytics and platform engineering. Drop me a line — I read everything.</p>
+      <h2 class="section-title" data-i18n="contact_title">Get in touch</h2>
+      <p class="lead" data-i18n="contact_lead">I'm open to collaboration and interesting problems in real-time systems, security analytics and platform engineering. Drop me a line — I read everything.</p>
       <div class="contact-grid">
         <a class="contact-card" href="https://protonoro.com/" target="_blank" rel="noopener">
-          <span class="contact-ico">🌐</span><span class="contact-k">Website</span><span class="contact-v">protonoro.com</span>
+          <span class="contact-ico">🌐</span><span class="contact-k" data-i18n="c_website">Website</span><span class="contact-v">protonoro.com</span>
         </a>
         <a class="contact-card" href="mailto:aid128638caides@gmail.com">
-          <span class="contact-ico">✉️</span><span class="contact-k">Email</span><span class="contact-v">aid128638caides@gmail.com</span>
+          <span class="contact-ico">✉️</span><span class="contact-k" data-i18n="c_email">Email</span><span class="contact-v">aid128638caides@gmail.com</span>
         </a>
         <a class="contact-card" href="https://github.com/Davitushka" target="_blank" rel="noopener">
           <span class="contact-ico">🐙</span><span class="contact-k">GitHub</span><span class="contact-v">@Davitushka</span>
-        </a>
-        <a class="contact-card" href="https://github.com/PROTONORO-LTD" target="_blank" rel="noopener">
-          <span class="contact-ico">🏢</span><span class="contact-k">Org</span><span class="contact-v">PROTONORO-LTD</span>
         </a>
       </div>
     </section>
@@ -182,7 +182,7 @@
   </main>
 
   <footer class="footer">
-    <span>© <span id="year"></span> Senri · Built with care</span>
+    <span>© <span id="year"></span> Senri · <span data-i18n="footer">Built with care</span></span>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@3/tsparticles.slim.bundle.min.js"></script>
