@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css?v=4" />
 </head>
 <body>
   <!-- Animated background layers -->
@@ -55,6 +55,12 @@
         I care about clean architecture, real-time data, and shipping things people actually use.
       </p>
 
+      <div class="about-block">
+        <p class="about-text" data-i18n="about_story"></p>
+        <ul class="about-list" data-i18n="about_focus"></ul>
+        <p class="about-now" data-i18n="about_now"></p>
+      </div>
+
       <div class="stat-row">
         <div class="stat"><span class="stat-num" data-count="3">0</span><span class="stat-label" data-i18n="stat_years">Years coding</span></div>
         <div class="stat"><span class="stat-num" data-count="160">0</span><span class="stat-label" data-i18n="stat_contrib">Contributions / yr</span></div>
@@ -66,6 +72,29 @@
         <a class="btn primary" href="#" data-tab="projects" data-i18n="cta_projects">View projects</a>
         <a class="btn primary alt" href="#" data-tab="playground" data-i18n="cta_playground">Try log parser</a>
         <a class="btn ghost" href="https://protonoro.com/" target="_blank" rel="noopener">protonoro.com</a>
+      </div>
+
+      <div class="pipeline-map-section">
+        <h3 class="subsection-title" data-i18n="map_title">How thread-sync works</h3>
+        <p class="map-hint" data-i18n="map_hint">Click a node to see what it does</p>
+        <div class="pipeline-map" id="pipelineMap">
+          <button type="button" class="pipe-node" data-node="apps">Apps</button>
+          <span class="pipe-arrow">→</span>
+          <button type="button" class="pipe-node" data-node="vector">Vector</button>
+          <span class="pipe-arrow">→</span>
+          <button type="button" class="pipe-node" data-node="kafka">Kafka</button>
+          <span class="pipe-arrow">→</span>
+          <button type="button" class="pipe-node" data-node="parser">Rust Parser</button>
+          <span class="pipe-arrow">→</span>
+          <button type="button" class="pipe-node" data-node="clickhouse">ClickHouse</button>
+          <span class="pipe-arrow">→</span>
+          <button type="button" class="pipe-node" data-node="portal">SOC / Grafana</button>
+        </div>
+        <div class="pipe-detail" id="pipeDetail" hidden>
+          <strong id="pipeDetailTitle"></strong>
+          <p id="pipeDetailDesc"></p>
+        </div>
+        <a class="btn ghost sm map-cta" href="#" data-tab="playground" data-i18n="map_cta">Try the parser ↗</a>
       </div>
     </section>
 
@@ -241,7 +270,14 @@
       <p class="modal-desc" id="modalDesc"></p>
       <ul class="modal-meta" id="modalMeta"></ul>
       <div class="modal-code-wrap" id="modalCodeWrap" hidden>
-        <div class="modal-code-label" data-i18n="modal_code_label">Code preview</div>
+        <div class="code-tabs-head">
+          <div class="code-tabs" id="codeTabs" role="tablist">
+            <button type="button" class="code-tab is-active" data-snippet="detect_format">detect_format</button>
+            <button type="button" class="code-tab" data-snippet="parse">parse</button>
+            <button type="button" class="code-tab" data-snippet="handle_parse">handle_parse</button>
+          </div>
+          <button type="button" class="btn ghost sm" id="codeCopyBtn" data-i18n="code_copy">Copy</button>
+        </div>
         <pre class="modal-code"><code id="modalCode"></code></pre>
         <div class="modal-code-file" id="modalCodeFile"></div>
       </div>
@@ -251,7 +287,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@3/tsparticles.slim.bundle.min.js"></script>
-  <script src="parser-demo.js?v=3"></script>
-  <script src="app.js?v=3"></script>
+  <script src="parser-demo.js?v=4"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>
