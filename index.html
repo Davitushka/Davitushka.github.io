@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Senri — Full-stack Developer @ Protonoro</title>
+  <meta name="description" content="Senri (Davitushka) — full-stack developer at Protonoro. Rust, React, .NET, real-time systems, observability." />
+  <meta property="og:title" content="Senri — Full-stack Developer" />
+  <meta property="og:description" content="Web platforms, real-time systems and observability tooling." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Animated background layers -->
+  <div id="bg-gradient" aria-hidden="true"></div>
+  <video id="bg-video" aria-hidden="true" autoplay muted loop playsinline></video>
+  <div id="tsparticles" aria-hidden="true"></div>
+
+  <!-- Header / nav tabs -->
+  <header class="topbar">
+    <a class="brand" href="#" data-tab="about">
+      <span class="brand-dot"></span> Senri
+    </a>
+    <nav class="tabs" role="tablist">
+      <button class="tab is-active" role="tab" data-tab="about">About</button>
+      <button class="tab" role="tab" data-tab="projects">Projects</button>
+      <button class="tab" role="tab" data-tab="stack">Stack</button>
+      <button class="tab" role="tab" data-tab="contact">Contact</button>
+    </nav>
+    <a class="gh-link" href="https://github.com/Davitushka" target="_blank" rel="noopener">GitHub ↗</a>
+  </header>
+
+  <main class="stage">
+
+    <!-- ABOUT -->
+    <section class="panel is-active" id="about" role="tabpanel">
+      <p class="eyebrow">Full-stack developer @ <a href="https://protonoro.com/" target="_blank" rel="noopener">Protonoro</a></p>
+      <h1 class="hero-title">Hi, I'm <span class="grad">Senri</span> <span class="wave">👋</span></h1>
+      <p class="typed-line"><span id="typed"></span><span class="caret">|</span></p>
+      <p class="lead">
+        I design and ship production tooling — from Rust parsing pipelines and SIEM backends
+        to React portals and Docker/Kubernetes deployments. Currently co-building products at
+        <a href="https://github.com/PROTONORO-LTD" target="_blank" rel="noopener">@PROTONORO-LTD</a>.
+      </p>
+
+      <div class="stat-row">
+        <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label">Years coding</span></div>
+        <div class="stat"><span class="stat-num" data-count="160">0</span><span class="stat-label">Contributions / yr</span></div>
+        <div class="stat"><span class="stat-num" data-count="9">0</span><span class="stat-label">Repositories</span></div>
+        <div class="stat"><span class="stat-num" data-count="2">0</span><span class="stat-label">Live products</span></div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn primary" href="#" data-tab="projects">View projects</a>
+        <a class="btn ghost" href="https://protonoro.com/" target="_blank" rel="noopener">protonoro.com</a>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="panel" id="projects" role="tabpanel">
+      <h2 class="section-title">Projects</h2>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-shot placeholder" data-label="thread-sync — add screenshot">
+            <img src="assets/thread-sync.png" alt="thread-sync SOC dashboard" loading="lazy"
+                 onerror="this.style.display='none';this.parentElement.classList.add('empty')" />
+          </div>
+          <div class="card-body">
+            <div class="card-head">
+              <h3>thread-sync</h3>
+              <span class="pill">Open source</span>
+            </div>
+            <p>Production-grade SIEM for microservice environments. Rust parser, React SOC portal, ClickHouse, Kafka, Grafana.</p>
+            <ul class="card-meta">
+              <li>10k - 50k EPS</li>
+              <li>alerts &le; 30s</li>
+              <li>parse &lt;5ms p99</li>
+            </ul>
+            <div class="card-tags">
+              <span>Rust</span><span>React</span><span>ClickHouse</span><span>Kafka</span><span>Grafana</span>
+            </div>
+            <a class="card-link" href="https://github.com/Davitushka/thread-sync" target="_blank" rel="noopener">Repository ↗</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-shot placeholder" data-label="Protonoro Timer — add screenshot">
+            <img src="assets/protonoro-timer.png" alt="Protonoro Timer app" loading="lazy"
+                 onerror="this.style.display='none';this.parentElement.classList.add('empty')" />
+          </div>
+          <div class="card-body">
+            <div class="card-head">
+              <h3>Protonoro Timer</h3>
+              <span class="pill alt">Product</span>
+            </div>
+            <p>Full-stack productivity timer built at PROTONORO-LTD — frontend and backend for daily focus workflows.</p>
+            <ul class="card-meta">
+              <li>Full-stack</li>
+              <li>Real-time</li>
+              <li>Team focus</li>
+            </ul>
+            <div class="card-tags">
+              <span>.NET</span><span>React</span><span>TypeScript</span>
+            </div>
+            <a class="card-link" href="https://github.com/PROTONORO-LTD" target="_blank" rel="noopener">@PROTONORO-LTD ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section class="panel" id="stack" role="tabpanel">
+      <h2 class="section-title">Technology stack</h2>
+
+      <div class="stack-group">
+        <h4>Languages</h4>
+        <div class="chips">
+          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg" alt="">Rust</span>
+          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">TypeScript</span>
+          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="">Python</span>
+          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" alt="">.NET</span>
+        </div>
+      </div>
+
+      <div class="stack-group">
+        <h4>Frontend</h4>
+        <div class="chips">
+          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">React</span>
+          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" alt="">Vite</span>
+          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tauri/tauri-original.svg" alt="">Tauri</span>
+        </div>
+      </div>
+
+      <div class="stack-group">
+        <h4>Data &amp; messaging</h4>
+        <div class="chips">
+          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/clickhouse/clickhouse-original.svg" alt="">ClickHouse</span>
+          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="">PostgreSQL</span>
+          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="">Redis</span>
+          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg" alt="">Kafka</span>
+        </div>
+      </div>
+
+      <div class="stack-group">
+        <h4>Ops &amp; observability</h4>
+        <div class="chips">
+          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="">Docker</span>
+          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="">Kubernetes</span>
+          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" alt="">Prometheus</span>
+          <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" alt="">Grafana</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="panel" id="contact" role="tabpanel">
+      <h2 class="section-title">Get in touch</h2>
+      <p class="lead">Open to collaboration and interesting problems in real-time systems, security analytics and platform engineering.</p>
+      <div class="contact-grid">
+        <a class="contact-card" href="https://protonoro.com/" target="_blank" rel="noopener">
+          <span class="contact-ico">🌐</span><span class="contact-k">Website</span><span class="contact-v">protonoro.com</span>
+        </a>
+        <a class="contact-card" href="mailto:aid128638caides@gmail.com">
+          <span class="contact-ico">✉️</span><span class="contact-k">Email</span><span class="contact-v">aid128638caides@gmail.com</span>
+        </a>
+        <a class="contact-card" href="https://github.com/Davitushka" target="_blank" rel="noopener">
+          <span class="contact-ico">🐙</span><span class="contact-k">GitHub</span><span class="contact-v">@Davitushka</span>
+        </a>
+        <a class="contact-card" href="https://github.com/PROTONORO-LTD" target="_blank" rel="noopener">
+          <span class="contact-ico">🏢</span><span class="contact-k">Org</span><span class="contact-v">PROTONORO-LTD</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> Senri · Built with care</span>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@3/tsparticles.slim.bundle.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
