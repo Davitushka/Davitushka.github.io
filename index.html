@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2" />
 </head>
 <body>
   <!-- Animated background layers -->
@@ -27,13 +27,14 @@
     <nav class="tabs" role="tablist">
       <button class="tab is-active" role="tab" data-tab="about" data-i18n="tab_about">About</button>
       <button class="tab" role="tab" data-tab="projects" data-i18n="tab_projects">Projects</button>
+      <button class="tab" role="tab" data-tab="playground" data-i18n="tab_playground">Playground</button>
       <button class="tab" role="tab" data-tab="stack" data-i18n="tab_stack">Stack</button>
       <button class="tab" role="tab" data-tab="contact" data-i18n="tab_contact">Contact</button>
     </nav>
     <div class="top-actions">
       <div class="lang-toggle" role="group" aria-label="Language">
-        <button class="lang-opt is-active" type="button" data-lang="ru">RU</button>
-        <button class="lang-opt" type="button" data-lang="en">EN</button>
+        <button class="lang-opt is-active" type="button" data-lang="ru" aria-pressed="true">RU</button>
+        <button class="lang-opt" type="button" data-lang="en" aria-pressed="false">EN</button>
       </div>
       <a class="gh-link" href="https://github.com/Davitushka" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
@@ -63,6 +64,7 @@
 
       <div class="cta-row">
         <a class="btn primary" href="#" data-tab="projects" data-i18n="cta_projects">View projects</a>
+        <a class="btn primary alt" href="#" data-tab="playground" data-i18n="cta_playground">Try log parser</a>
         <a class="btn ghost" href="https://protonoro.com/" target="_blank" rel="noopener">protonoro.com</a>
       </div>
     </section>
@@ -120,6 +122,44 @@
           </div>
         </article>
 
+      </div>
+    </section>
+
+    <!-- PLAYGROUND -->
+    <section class="panel" id="playground" role="tabpanel">
+      <h2 class="section-title" data-i18n="pg_title">Live log parser</h2>
+      <p class="lead pg-lead" data-i18n="pg_lead">Paste a log line — the same format detection logic from my thread-sync Rust parser, running in your browser.</p>
+
+      <div class="pg-examples">
+        <button class="btn ghost sm" type="button" data-example="json" data-i18n="pg_ex_json">JSON event</button>
+        <button class="btn ghost sm" type="button" data-example="cef" data-i18n="pg_ex_cef">CEF alert</button>
+        <button class="btn ghost sm" type="button" data-example="syslog" data-i18n="pg_ex_syslog">Syslog line</button>
+      </div>
+
+      <textarea id="pgInput" class="pg-input" rows="4" spellcheck="false" placeholder='{"event":"login","user":"admin"}'></textarea>
+      <button class="btn primary" type="button" id="pgParse" data-i18n="pg_parse">Parse</button>
+
+      <div class="pipeline" id="pgPipeline" aria-hidden="true">
+        <span class="pipeline-step" data-i18n="pg_step_ingest">ingest</span>
+        <span class="pipeline-arrow">→</span>
+        <span class="pipeline-step" data-i18n="pg_step_detect">detect</span>
+        <span class="pipeline-arrow">→</span>
+        <span class="pipeline-step" data-i18n="pg_step_normalize">normalize</span>
+        <span class="pipeline-arrow">→</span>
+        <span class="pipeline-step" data-i18n="pg_step_kafka">Kafka</span>
+        <span class="pipeline-arrow">→</span>
+        <span class="pipeline-step" data-i18n="pg_step_ch">ClickHouse</span>
+      </div>
+
+      <div class="pg-result" id="pgResult" hidden>
+        <div class="pg-row">
+          <span class="pg-label" data-i18n="pg_format">Detected format</span>
+          <div id="pgFormat"></div>
+        </div>
+        <div class="pg-row">
+          <span class="pg-label" data-i18n="pg_output">Normalized preview</span>
+          <pre class="pg-output"><code id="pgOutput"></code></pre>
+        </div>
       </div>
     </section>
 
@@ -211,6 +251,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@3/tsparticles.slim.bundle.min.js"></script>
-  <script src="app.js"></script>
+  <script src="parser-demo.js?v=2"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>

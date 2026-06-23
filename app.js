@@ -1,6 +1,3 @@
-// Year
-document.getElementById('year').textContent = new Date().getFullYear();
-
 const TS_CODE = `/// Detect log format from first bytes (JSON, CEF, syslog, plaintext)
 pub fn detect_format(raw: &[u8]) -> LogFormat {
     let trimmed = raw.iter()
@@ -9,39 +6,19 @@ pub fn detect_format(raw: &[u8]) -> LogFormat {
 
     if trimmed.first() == Some(&b'{') { return LogFormat::Json; }
     if trimmed.starts_with(b"CEF:") { return LogFormat::Cef; }
-    if trimmed.first() == Some(&b'<') {
-        if let Some(gt) = trimmed.iter().position(|&b| b == b'>') {
-            let after = &trimmed[gt + 1..];
-            if after.first().map(|b| b.is_ascii_digit()) == Some(true) {
-                return LogFormat::Syslog5424;
-            }
-            return LogFormat::Syslog3164;
-        }
-    }
+    // ... syslog RFC5424 / RFC3164 / plaintext
     LogFormat::PlainText
-}
-
-pub fn parse(raw: Bytes, source_type: &str, host: &str)
-    -> Result<NormalizedEvent, ParserError>
-{
-    let format = detect_format(&raw);
-    let mut event = NormalizedEvent::new(source_type);
-    event.host = host.to_string();
-    event.ingest_ts = Utc::now();
-    // JSON → CEF → syslog → plaintext
-    match format { /* ... */ }
-    Ok(event)
 }`;
 
-// ---- i18n (RU / EN) ----
 const I18N = {
   en: {
-    tab_about: 'About', tab_projects: 'Projects', tab_stack: 'Stack', tab_contact: 'Contact',
+    tab_about: 'About', tab_projects: 'Projects', tab_playground: 'Playground',
+    tab_stack: 'Stack', tab_contact: 'Contact',
     eyebrow: 'Full-stack developer @ <a href="https://protonoro.com/" target="_blank" rel="noopener">Protonoro</a>',
     hero: 'Hi, I\'m <span class="grad">Senri</span> <span class="wave">👋</span>',
     lead: 'I build production tooling end to end — Rust parsing pipelines and SIEM backends, React portals, and the Docker/Kubernetes setups that keep them running. Right now I\'m co-building products at <a href="https://protonoro.com/" target="_blank" rel="noopener">Protonoro</a>. I care about clean architecture, real-time data, and shipping things people actually use.',
     stat_years: 'Years coding', stat_contrib: 'Contributions / yr', stat_repos: 'Repositories', stat_products: 'Live products',
-    cta_projects: 'View projects',
+    cta_projects: 'View projects', cta_playground: 'Try log parser',
     projects_title: 'Projects',
     pill_oss: 'Open source', pill_product: 'Product',
     ts_desc: 'My production-grade SIEM for microservice environments — I wrote the Rust parser, the React SOC portal, and the ClickHouse / Kafka / Grafana pipeline behind it.',
@@ -50,7 +27,8 @@ const I18N = {
     pt_meta3: 'Team focus', pt_link: 'Open the app ↗',
     card_hint: 'Click card to preview code ↗',
     card_hint_app: 'Click card for details ↗',
-    stack_title: 'Technology stack', stack_lang: 'Languages', stack_front: 'Frontend', stack_data: 'Data &amp; messaging', stack_ops: 'Ops &amp; observability',
+    stack_title: 'Technology stack', stack_lang: 'Languages', stack_front: 'Frontend',
+    stack_data: 'Data &amp; messaging', stack_ops: 'Ops &amp; observability',
     contact_title: 'Get in touch',
     contact_lead: 'I\'m open to collaboration and interesting problems in real-time systems, security analytics and platform engineering. Drop me a line — I read everything.',
     c_website: 'Website', c_email: 'Email',
@@ -65,15 +43,29 @@ const I18N = {
     modal_pt_desc: 'Productivity app with Pomodoro timer, tasks, categories and team features. I handle both frontend and backend. The repo is closed — here\'s what the product does.',
     modal_pt_meta: ['Pomodoro & focus modes', 'Tasks & categories', 'Real-time sync'],
     modal_pt_btn: 'Open protonoro.com',
+    pg_title: 'Live log parser',
+    pg_lead: 'Paste a log line — the same format detection logic from my thread-sync Rust parser, running in your browser.',
+    pg_parse: 'Parse',
+    pg_format: 'Detected format',
+    pg_output: 'Normalized preview',
+    pg_ex_json: 'JSON event',
+    pg_ex_cef: 'CEF alert',
+    pg_ex_syslog: 'Syslog line',
+    pg_step_ingest: 'ingest',
+    pg_step_detect: 'detect',
+    pg_step_normalize: 'normalize',
+    pg_step_kafka: 'Kafka',
+    pg_step_ch: 'ClickHouse',
     _typed: ['Rust parsers & real-time pipelines', 'React SOC portals', '.NET services @ Protonoro', 'ClickHouse · Kafka · Grafana', 'Docker & Kubernetes deployments']
   },
   ru: {
-    tab_about: 'Обо мне', tab_projects: 'Проекты', tab_stack: 'Стек', tab_contact: 'Контакты',
+    tab_about: 'Обо мне', tab_projects: 'Проекты', tab_playground: 'Демо',
+    tab_stack: 'Стек', tab_contact: 'Контакты',
     eyebrow: 'Full-stack разработчик @ <a href="https://protonoro.com/" target="_blank" rel="noopener">Protonoro</a>',
     hero: 'Привет, я <span class="grad">Senri</span> <span class="wave">👋</span>',
     lead: 'Делаю продакшен-инструменты от и до — парсинг-пайплайны на Rust и бэкенды SIEM, порталы на React и связку Docker/Kubernetes, которая всё это держит. Сейчас вместе с командой строю продукты в <a href="https://protonoro.com/" target="_blank" rel="noopener">Protonoro</a>. Люблю чистую архитектуру, данные в реальном времени и вещи, которыми реально пользуются.',
     stat_years: 'Года в коде', stat_contrib: 'Коммитов / год', stat_repos: 'Репозиториев', stat_products: 'Живых продукта',
-    cta_projects: 'Смотреть проекты',
+    cta_projects: 'Смотреть проекты', cta_playground: 'Попробовать парсер',
     projects_title: 'Проекты',
     pill_oss: 'Открытый код', pill_product: 'Продукт',
     ts_desc: 'Моя продакшен-SIEM для микросервисных сред — я написал парсер на Rust, SOC-портал на React и весь пайплайн на ClickHouse / Kafka / Grafana.',
@@ -82,7 +74,8 @@ const I18N = {
     pt_meta3: 'Командный фокус', pt_link: 'Открыть приложение ↗',
     card_hint: 'Нажми на карточку — покажу код ↗',
     card_hint_app: 'Нажми на карточку — подробности ↗',
-    stack_title: 'Технологии', stack_lang: 'Языки', stack_front: 'Фронтенд', stack_data: 'Данные и очереди', stack_ops: 'Ops и observability',
+    stack_title: 'Технологии', stack_lang: 'Языки', stack_front: 'Фронтенд',
+    stack_data: 'Данные и очереди', stack_ops: 'Ops и observability',
     contact_title: 'Связаться',
     contact_lead: 'Открыт к сотрудничеству и интересным задачам в real-time системах, security-аналитике и платформенной инженерии. Напиши — я читаю всё.',
     c_website: 'Сайт', c_email: 'Почта',
@@ -97,16 +90,39 @@ const I18N = {
     modal_pt_desc: 'Приложение для продуктивности: помодоро-таймер, задачи, категории и командные фичи. Делаю и фронт, и бэк. Репозиторий закрыт — вот что умеет продукт.',
     modal_pt_meta: ['Помодоро и режимы фокуса', 'Задачи и категории', 'Синхронизация в реальном времени'],
     modal_pt_btn: 'Открыть protonoro.com',
+    pg_title: 'Live log parser',
+    pg_lead: 'Вставь строку лога — та же логика определения формата из моего Rust-парсера thread-sync, прямо в браузере.',
+    pg_parse: 'Разобрать',
+    pg_format: 'Определённый формат',
+    pg_output: 'Нормализованный preview',
+    pg_ex_json: 'JSON событие',
+    pg_ex_cef: 'CEF алерт',
+    pg_ex_syslog: 'Syslog строка',
+    pg_step_ingest: 'ingest',
+    pg_step_detect: 'detect',
+    pg_step_normalize: 'normalize',
+    pg_step_kafka: 'Kafka',
+    pg_step_ch: 'ClickHouse',
     _typed: ['Парсеры на Rust и real-time пайплайны', 'SOC-порталы на React', 'Сервисы .NET @ Protonoro', 'ClickHouse · Kafka · Grafana', 'Деплой в Docker и Kubernetes']
   }
 };
 
 const PROJECTS = {
-  'thread-sync': { openSource: true, repo: 'https://github.com/Davitushka/thread-sync' },
-  'protonoro-timer': { openSource: false, url: 'https://protonoro.com/' }
+  'thread-sync': { repo: 'https://github.com/Davitushka/thread-sync' },
+  'protonoro-timer': { url: 'https://protonoro.com/' }
 };
 
 let currentLang = localStorage.getItem('lang') || 'ru';
+let phrases, pi = 0, ci = 0, deleting = false;
+let countersDone = false;
+let openProjectId = null;
+
+const modalEl = document.getElementById('projectModal');
+const typed = document.getElementById('typed');
+
+function t(key) {
+  return I18N[currentLang][key];
+}
 
 function applyLang(lang) {
   currentLang = lang;
@@ -118,127 +134,36 @@ function applyLang(lang) {
     if (v != null) el.innerHTML = v;
   });
   document.querySelectorAll('.lang-opt').forEach(btn => {
-    btn.classList.toggle('is-active', btn.dataset.lang === lang);
+    const active = btn.dataset.lang === lang;
+    btn.classList.toggle('is-active', active);
+    btn.setAttribute('aria-pressed', active ? 'true' : 'false');
   });
   phrases = dict._typed;
   pi = 0; ci = 0; deleting = false;
   localStorage.setItem('lang', lang);
-  if (modalEl && !modalEl.hidden) fillModal(openProjectId);
+  if (modalEl?.classList.contains('is-open') && openProjectId) fillModal(openProjectId);
+  updatePipelineLabels();
 }
 
-// ---- Tabs ----
-const tabs = document.querySelectorAll('[data-tab]');
-const panels = document.querySelectorAll('.panel');
 function activate(name) {
-  panels.forEach(p => p.classList.toggle('is-active', p.id === name));
+  document.querySelectorAll('.panel').forEach(p =>
+    p.classList.toggle('is-active', p.id === name));
   document.querySelectorAll('.tab').forEach(t =>
     t.classList.toggle('is-active', t.dataset.tab === name));
   if (name === 'about') runCounters();
 }
-tabs.forEach(el => el.addEventListener('click', e => {
-  e.preventDefault();
-  activate(el.dataset.tab);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}));
 
-// ---- Typing effect ----
-let phrases = I18N[currentLang]._typed;
-const typed = document.getElementById('typed');
-let pi = 0, ci = 0, deleting = false;
 function type() {
+  if (!typed) return;
   const word = phrases[pi];
   typed.textContent = word.slice(0, ci);
-  if (!deleting && ci < word.length) { ci++; }
-  else if (deleting && ci > 0) { ci--; }
+  if (!deleting && ci < word.length) ci++;
+  else if (deleting && ci > 0) ci--;
   else if (!deleting && ci === word.length) { deleting = true; setTimeout(type, 1400); return; }
   else { deleting = false; pi = (pi + 1) % phrases.length; }
   setTimeout(type, deleting ? 40 : 80);
 }
-type();
 
-// ---- Language toggle ----
-applyLang(currentLang);
-document.querySelectorAll('.lang-opt').forEach(btn => {
-  btn.addEventListener('click', () => applyLang(btn.dataset.lang));
-});
-
-// ---- Project modal ----
-const modalEl = document.getElementById('projectModal');
-let openProjectId = null;
-
-function fillModal(id) {
-  const dict = I18N[currentLang];
-  const cfg = PROJECTS[id];
-  const title = document.getElementById('modalTitle');
-  const pill = document.getElementById('modalPill');
-  const desc = document.getElementById('modalDesc');
-  const meta = document.getElementById('modalMeta');
-  const codeWrap = document.getElementById('modalCodeWrap');
-  const codeEl = document.getElementById('modalCode');
-  const codeFile = document.getElementById('modalCodeFile');
-  const priv = document.getElementById('modalPrivate');
-  const actions = document.getElementById('modalActions');
-
-  if (id === 'thread-sync') {
-    title.textContent = dict.modal_ts_title;
-    pill.textContent = dict.pill_oss;
-    pill.className = 'pill';
-    desc.textContent = dict.modal_ts_desc;
-    meta.innerHTML = dict.modal_ts_meta.map(m => `<li>${m}</li>`).join('');
-    codeWrap.hidden = false;
-    codeEl.textContent = TS_CODE;
-    codeFile.textContent = 'rust-parser/src/parser.rs';
-    priv.hidden = true;
-    actions.innerHTML = `<a class="btn primary" href="${cfg.repo}" target="_blank" rel="noopener">${dict.modal_ts_btn} ↗</a>`;
-  } else {
-    title.textContent = dict.modal_pt_title;
-    pill.textContent = dict.pill_product;
-    pill.className = 'pill alt';
-    desc.textContent = dict.modal_pt_desc;
-    meta.innerHTML = dict.modal_pt_meta.map(m => `<li>${m}</li>`).join('');
-    codeWrap.hidden = true;
-    priv.hidden = false;
-    actions.innerHTML = `<a class="btn primary" href="${cfg.url}" target="_blank" rel="noopener">${dict.modal_pt_btn} ↗</a>`;
-  }
-}
-
-function openModal(id) {
-  openProjectId = id;
-  fillModal(id);
-  modalEl.hidden = false;
-  modalEl.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('modal-open');
-}
-
-function closeModal() {
-  modalEl.hidden = true;
-  modalEl.setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('modal-open');
-  openProjectId = null;
-}
-
-document.querySelectorAll('.card-clickable').forEach(card => {
-  card.addEventListener('click', e => {
-    if (e.target.closest('[data-stop-prop]')) return;
-    openModal(card.dataset.project);
-  });
-  card.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      openModal(card.dataset.project);
-    }
-  });
-});
-
-modalEl.querySelectorAll('[data-close-modal]').forEach(el => {
-  el.addEventListener('click', closeModal);
-});
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && !modalEl.hidden) closeModal();
-});
-
-// ---- Animated counters ----
-let countersDone = false;
 function runCounters() {
   if (countersDone) return;
   countersDone = true;
@@ -254,36 +179,192 @@ function runCounters() {
     tick();
   });
 }
-runCounters();
 
-// ---- Optional custom background video ----
-(function () {
-  const v = document.getElementById('bg-video');
-  fetch('assets/bg.mp4', { method: 'HEAD' })
-    .then(r => { if (r.ok) { v.src = 'assets/bg.mp4'; v.classList.add('on'); } })
-    .catch(() => {});
-})();
+function fillModal(id) {
+  if (!modalEl || !id) return;
+  const dict = I18N[currentLang];
+  const cfg = PROJECTS[id];
+  document.getElementById('modalTitle').textContent = id === 'thread-sync' ? dict.modal_ts_title : dict.modal_pt_title;
+  const pill = document.getElementById('modalPill');
+  pill.textContent = id === 'thread-sync' ? dict.pill_oss : dict.pill_product;
+  pill.className = id === 'thread-sync' ? 'pill' : 'pill alt';
+  document.getElementById('modalDesc').textContent = id === 'thread-sync' ? dict.modal_ts_desc : dict.modal_pt_desc;
+  const meta = id === 'thread-sync' ? dict.modal_ts_meta : dict.modal_pt_meta;
+  document.getElementById('modalMeta').innerHTML = meta.map(m => `<li>${m}</li>`).join('');
+  const codeWrap = document.getElementById('modalCodeWrap');
+  const priv = document.getElementById('modalPrivate');
+  const actions = document.getElementById('modalActions');
+  if (id === 'thread-sync') {
+    codeWrap.hidden = false;
+    document.getElementById('modalCode').textContent = TS_CODE;
+    document.getElementById('modalCodeFile').textContent = 'rust-parser/src/parser.rs';
+    priv.hidden = true;
+    actions.innerHTML = `<a class="btn primary" href="${cfg.repo}" target="_blank" rel="noopener">${dict.modal_ts_btn} ↗</a>`;
+  } else {
+    codeWrap.hidden = true;
+    priv.hidden = false;
+    actions.innerHTML = `<a class="btn primary" href="${cfg.url}" target="_blank" rel="noopener">${dict.modal_pt_btn} ↗</a>`;
+  }
+}
 
-// ---- tsParticles background ----
-if (window.tsParticles) {
-  tsParticles.load({
-    id: 'tsparticles',
-    options: {
-      fpsLimit: 60,
-      fullScreen: { enable: false },
-      particles: {
-        number: { value: 60, density: { enable: true, area: 900 } },
-        color: { value: ['#7c3aed', '#a855f7', '#22d3ee'] },
-        links: { enable: true, distance: 140, color: '#7c3aed', opacity: 0.25, width: 1 },
-        move: { enable: true, speed: 0.8, outModes: { default: 'out' } },
-        opacity: { value: 0.5 },
-        size: { value: { min: 1, max: 3 } }
-      },
-      interactivity: {
-        events: { onHover: { enable: true, mode: 'grab' } },
-        modes: { grab: { distance: 160, links: { opacity: 0.5 } } }
-      },
-      detectRetina: true
-    }
+function openModal(id) {
+  if (!modalEl) return;
+  openProjectId = id;
+  fillModal(id);
+  modalEl.removeAttribute('hidden');
+  modalEl.classList.add('is-open');
+  modalEl.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+}
+
+function closeModal() {
+  if (!modalEl) return;
+  modalEl.setAttribute('hidden', '');
+  modalEl.classList.remove('is-open');
+  modalEl.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+  openProjectId = null;
+}
+
+const PIPELINE_STEPS = ['ingest', 'detect', 'normalize', 'kafka', 'clickhouse'];
+
+function updatePipelineLabels() {
+  const keys = ['pg_step_ingest', 'pg_step_detect', 'pg_step_normalize', 'pg_step_kafka', 'pg_step_ch'];
+  document.querySelectorAll('.pipeline-step').forEach((el, i) => {
+    if (keys[i]) el.textContent = t(keys[i]);
   });
+}
+
+function animatePipeline(onDone) {
+  const steps = document.querySelectorAll('.pipeline-step');
+  steps.forEach(s => s.classList.remove('is-active', 'is-done'));
+  let i = 0;
+  const next = () => {
+    if (i > 0) steps[i - 1].classList.replace('is-active', 'is-done');
+    if (i >= steps.length) { onDone?.(); return; }
+    steps[i].classList.add('is-active');
+    i++;
+    setTimeout(next, 300);
+  };
+  next();
+}
+
+function runParser() {
+  const input = document.getElementById('pgInput');
+  const formatEl = document.getElementById('pgFormat');
+  const outputEl = document.getElementById('pgOutput');
+  if (!input || !window.ParserDemo) return;
+  const raw = input.value.trim();
+  if (!raw) return;
+
+  formatEl.textContent = '…';
+  outputEl.textContent = '';
+  document.getElementById('pgResult').hidden = true;
+
+  animatePipeline(() => {
+    const format = ParserDemo.detectFormat(raw);
+    const preview = ParserDemo.normalizePreview(raw, format);
+    formatEl.innerHTML = `<span class="format-badge">${format}</span>`;
+    outputEl.textContent = JSON.stringify(preview, null, 2);
+    document.getElementById('pgResult').hidden = false;
+  });
+}
+
+function initPlayground() {
+  document.getElementById('pgParse')?.addEventListener('click', runParser);
+  document.getElementById('pgInput')?.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) runParser();
+  });
+  document.querySelectorAll('[data-example]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.example;
+      const input = document.getElementById('pgInput');
+      if (input && ParserDemo.EXAMPLES[key]) {
+        input.value = ParserDemo.EXAMPLES[key];
+        runParser();
+      }
+    });
+  });
+  updatePipelineLabels();
+}
+
+function init() {
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  applyLang(currentLang);
+  type();
+  runCounters();
+
+  document.querySelectorAll('[data-tab]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      activate(el.dataset.tab);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  document.querySelectorAll('.lang-opt').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+  });
+
+  document.querySelectorAll('.card-clickable').forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.target.closest('[data-stop-prop]')) return;
+      openModal(card.dataset.project);
+    });
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(card.dataset.project);
+      }
+    });
+  });
+
+  modalEl?.querySelectorAll('[data-close-modal]').forEach(el => {
+    el.addEventListener('click', closeModal);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modalEl?.classList.contains('is-open')) closeModal();
+  });
+
+  initPlayground();
+
+  const hash = location.hash.replace('#', '');
+  if (hash && document.getElementById(hash)) activate(hash);
+
+  const v = document.getElementById('bg-video');
+  if (v) {
+    fetch('assets/bg.mp4', { method: 'HEAD' })
+      .then(r => { if (r.ok) { v.src = 'assets/bg.mp4'; v.classList.add('on'); } })
+      .catch(() => {});
+  }
+
+  if (window.tsParticles) {
+    tsParticles.load({
+      id: 'tsparticles',
+      options: {
+        fpsLimit: 60,
+        fullScreen: { enable: false },
+        particles: {
+          number: { value: 35, density: { enable: true, area: 1200 } },
+          color: { value: ['#7c3aed', '#a855f7'] },
+          links: { enable: true, distance: 140, color: '#7c3aed', opacity: 0.12, width: 1 },
+          move: { enable: true, speed: 0.5, outModes: { default: 'out' } },
+          opacity: { value: 0.3 },
+          size: { value: { min: 1, max: 2 } }
+        },
+        interactivity: {
+          events: { onHover: { enable: true, mode: 'grab' } },
+          modes: { grab: { distance: 140, links: { opacity: 0.25 } } }
+        },
+        detectRetina: true
+      }
+    });
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
 }
