@@ -31,11 +31,21 @@ function applyLang(lang) {
   if (activeNode) showPipeDetail(activeNode.dataset.node);
 }
 
-function activate(name) {
-  document.querySelectorAll('.panel').forEach(p =>
-    p.classList.toggle('is-active', p.id === name));
-  document.querySelectorAll('.tab').forEach(tab =>
-    tab.classList.toggle('is-active', tab.dataset.tab === name));
+function activate(name, updateHash = true) {
+  if (!PANEL_IDS.includes(name)) return;
+  document.querySelectorAll('.panel').forEach(p => {
+    const active = p.id === name;
+    p.classList.toggle('is-active', active);
+    p.hidden = !active;
+  });
+  document.querySelectorAll('.tab').forEach(tab => {
+    const active = tab.dataset.tab === name;
+    tab.classList.toggle('is-active', active);
+    tab.setAttribute('aria-selected', active ? 'true' : 'false');
+  });
+  if (updateHash && location.hash.replace('#', '') !== name) {
+    history.replaceState(null, '', `#${name}`);
+  }
   if (name === 'about') runCounters();
 }
 

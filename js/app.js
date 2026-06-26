@@ -4,10 +4,16 @@ async function loadPartials() {
   const main = document.querySelector('.stage');
   if (!main) return;
   const panels = await Promise.all(
-    PANEL_IDS.map(id => fetch(`partials/panel-${id}.html`).then(r => r.text()))
+    PANEL_IDS.map(async id => {
+      const response = await fetch(`partials/panel-${id}.html`);
+      if (!response.ok) throw new Error(`Failed to load panel: ${id}`);
+      return response.text();
+    })
   );
   panels.forEach(html => main.insertAdjacentHTML('beforeend', html));
-  const modal = await fetch('partials/modal.html').then(r => r.text());
+  const modalResponse = await fetch('partials/modal.html');
+  if (!modalResponse.ok) throw new Error('Failed to load modal');
+  const modal = await modalResponse.text();
   document.body.insertAdjacentHTML('beforeend', modal);
 }
 
@@ -19,12 +25,12 @@ function initParticles() {
       fpsLimit: 60,
       fullScreen: { enable: false },
       particles: {
-        number: { value: 35, density: { enable: true, area: 1200 } },
-        color: { value: ['#7c3aed', '#a855f7'] },
-        links: { enable: true, distance: 140, color: '#7c3aed', opacity: 0.12, width: 1 },
-        move: { enable: true, speed: 0.5, outModes: { default: 'out' } },
-        opacity: { value: 0.3 },
-        size: { value: { min: 1, max: 2 } }
+        number: { value: 58, density: { enable: true, area: 1200 } },
+        color: { value: ['#7c3aed', '#a855f7', '#22d3ee', '#ffffff'] },
+        links: { enable: true, distance: 150, color: '#7c3aed', opacity: 0.14, width: 1 },
+        move: { enable: true, speed: 0.38, outModes: { default: 'out' } },
+        opacity: { value: { min: 0.18, max: 0.55 } },
+        size: { value: { min: 1, max: 2.6 } }
       },
       interactivity: {
         events: { onHover: { enable: true, mode: 'grab' } },
@@ -68,15 +74,23 @@ function init() {
   initPlayground();
 
   const hash = location.hash.replace('#', '');
-  if (hash && document.getElementById(hash)) activate(hash);
+  activate(hash && document.getElementById(hash) ? hash : 'about', Boolean(hash));
 
   initBgVideo();
   initParticles();
 }
 
 async function boot() {
-  await loadPartials();
-  init();
+  try {
+    await loadPartials();
+    init();
+  } catch (error) {
+    console.error(error);
+    const main = document.querySelector('.stage');
+    if (main) {
+      main.innerHTML = '<section class="panel is-active"><h1 class="hero-title">Portfolio loading error</h1><p class="lead">Open this site through a local server or GitHub Pages so HTML partials can load.</p></section>';
+    }
+  }
 }
 
 if (document.readyState === 'loading') {
