@@ -29,26 +29,30 @@ a{color:inherit;text-decoration:none}
 #bg-gradient{
   position:fixed; inset:0; z-index:-3;
   background:
-    radial-gradient(40% 40% at 18% 18%, rgba(124,58,237,.26), transparent 62%),
-    radial-gradient(44% 44% at 84% 20%, rgba(34,211,238,.12), transparent 64%),
-    radial-gradient(70% 70% at 50% 100%, rgba(168,85,247,.08), transparent 60%),
-    linear-gradient(160deg,#000000,#050510 58%,#000000);
+    radial-gradient(ellipse at 18% 18%, rgba(124,58,237,.22), transparent 42%),
+    radial-gradient(ellipse at 88% 18%, rgba(34,211,238,.09), transparent 36%),
+    radial-gradient(ellipse at 52% 88%, rgba(236,72,153,.08), transparent 44%),
+    radial-gradient(circle at 50% 50%, #070512 0%, #02020a 48%, #000 100%);
   background-size:200% 200%; animation:drift 18s ease-in-out infinite;
 }
 #bg-gradient::before{
   content:"";position:absolute;inset:0;
   background-image:
-    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-  background-size:72px 72px;mask-image:radial-gradient(circle at 50% 20%,#000,transparent 72%);
-  opacity:.28;
+    radial-gradient(circle at 18% 24%,rgba(255,255,255,.82) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 44% 62%,rgba(255,255,255,.62) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 72% 30%,rgba(255,255,255,.72) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 86% 78%,rgba(255,255,255,.55) 0 1px,transparent 1.6px);
+  background-size:260px 190px;opacity:.38;animation:starsFloat 70s linear infinite;
 }
 #bg-gradient::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 0 55%,rgba(124,58,237,.08) 56%,transparent 57%);
-  background-size:100% 12px;opacity:.14;mix-blend-mode:screen;
+  background:
+    radial-gradient(ellipse at 22% 70%,rgba(168,85,247,.2),transparent 34%),
+    radial-gradient(ellipse at 78% 46%,rgba(34,211,238,.1),transparent 30%);
+  filter:blur(32px);opacity:.55;mix-blend-mode:screen;
 }
 @keyframes drift{0%,100%{background-position:0% 0%}50%{background-position:100% 100%}}
+@keyframes starsFloat{to{background-position:260px 190px}}
 #bg-video{position:fixed;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
 #bg-video.on{opacity:.2}
 #tsparticles{position:fixed;inset:0;z-index:-1}

@@ -13,43 +13,79 @@
 @keyframes blink{50%{opacity:0}}
 .lead{color:var(--muted);font-size:1.1rem;line-height:1.7;max-width:680px}
 .lead a{color:var(--accent2);border-bottom:1px solid var(--line)}
-.orbit-hero{
+.cosmos-hero{
   display:grid;grid-template-columns:minmax(260px,420px) minmax(260px,1fr);
   gap:24px;align-items:center;margin:32px 0 28px;max-width:940px;
 }
-.orbit-visual{
+.cosmos-visual{
   position:relative;min-height:300px;border-radius:28px;overflow:hidden;
   background:
-    radial-gradient(circle at 50% 50%,rgba(168,85,247,.28),transparent 18%),
-    radial-gradient(circle at 50% 50%,rgba(34,211,238,.08),transparent 44%),
-    linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
-  border:1px solid rgba(124,58,237,.22);box-shadow:0 24px 70px rgba(0,0,0,.45);
+    radial-gradient(circle at 68% 23%,rgba(255,255,255,.8) 0 1px,transparent 2px),
+    radial-gradient(circle at 18% 38%,rgba(255,255,255,.7) 0 1px,transparent 2px),
+    radial-gradient(circle at 80% 74%,rgba(168,85,247,.18),transparent 18%),
+    radial-gradient(circle at 30% 78%,rgba(34,211,238,.13),transparent 28%),
+    linear-gradient(145deg,#02030a 0%,#050010 42%,#010106 100%);
+  border:1px solid rgba(168,85,247,.24);
+  box-shadow:0 24px 80px rgba(0,0,0,.58),inset 0 0 80px rgba(124,58,237,.08);
 }
-.orbit-visual::before{
-  content:"";position:absolute;inset:16%;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,255,255,.86) 0 1px,transparent 2px);
-  background-size:22px 22px;opacity:.22;animation:starDrift 24s linear infinite;
+.cosmos-visual::before,
+.cosmos-visual::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:
+    radial-gradient(circle at 12% 16%,rgba(255,255,255,.9) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 32% 64%,rgba(255,255,255,.65) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 52% 28%,rgba(255,255,255,.8) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 73% 48%,rgba(255,255,255,.7) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 88% 82%,rgba(255,255,255,.75) 0 1px,transparent 1.6px);
+  background-size:190px 150px;opacity:.38;animation:starDrift 36s linear infinite;
 }
-.orbit-ring{
-  position:absolute;inset:50%;width:72%;aspect-ratio:1;border:1px solid rgba(238,242,255,.14);
-  border-radius:50%;transform:translate(-50%,-50%) rotateX(64deg) rotateZ(0deg);
+.cosmos-visual::after{background-size:130px 110px;opacity:.22;filter:blur(.4px);animation-duration:58s}
+.cosmos-nebula{
+  position:absolute;inset:-22% -14% -18% -18%;
+  background:
+    radial-gradient(ellipse at 28% 56%,rgba(124,58,237,.34),transparent 30%),
+    radial-gradient(ellipse at 64% 42%,rgba(236,72,153,.25),transparent 34%),
+    radial-gradient(ellipse at 44% 64%,rgba(34,211,238,.12),transparent 28%);
+  filter:blur(28px) saturate(1.18);opacity:.82;animation:nebulaBreath 12s ease-in-out infinite;
 }
-.ring-one{animation:orbitSpin 18s linear infinite}
-.ring-two{width:54%;border-color:rgba(34,211,238,.2);animation:orbitSpin 13s linear infinite reverse}
-.ring-three{width:86%;border-style:dashed;animation:orbitSpin 26s linear infinite}
-.planet{
-  position:absolute;display:grid;place-items:center;border-radius:999px;
-  font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:700;
-  color:#fff;text-shadow:0 0 12px rgba(255,255,255,.45);
+.cosmos-dust{
+  position:absolute;left:-16%;top:47%;width:132%;height:42%;
+  background:
+    radial-gradient(ellipse at 50% 50%,rgba(255,221,244,.54),rgba(168,85,247,.18) 30%,transparent 68%),
+    repeating-linear-gradient(168deg,rgba(255,255,255,.08) 0 1px,transparent 1px 8px);
+  transform:rotate(-12deg);filter:blur(1.1px);opacity:.48;mix-blend-mode:screen;
 }
-.planet-core{
-  width:72px;height:72px;left:50%;top:50%;transform:translate(-50%,-50%);
-  background:radial-gradient(circle at 34% 30%,#fff,#a855f7 42%,#2e1065 74%);
-  box-shadow:0 0 32px rgba(168,85,247,.85),0 0 88px rgba(124,58,237,.34);
+.cosmos-galaxy{
+  position:absolute;left:12%;top:26%;width:76%;height:46%;border-radius:50%;
+  background:
+    radial-gradient(ellipse at 50% 50%,rgba(255,246,214,.92) 0 7%,rgba(168,85,247,.3) 18%,rgba(34,211,238,.12) 34%,transparent 63%),
+    conic-gradient(from 70deg,transparent 0 18%,rgba(255,255,255,.2) 22%,transparent 32%,rgba(168,85,247,.2) 48%,transparent 62%,rgba(255,255,255,.13) 74%,transparent 100%);
+  transform:rotate(-18deg);filter:blur(.55px);box-shadow:0 0 46px rgba(168,85,247,.24);
 }
-.planet-rust{width:58px;height:58px;left:18%;top:35%;background:linear-gradient(135deg,#f97316,#7c2d12)}
-.planet-react{width:62px;height:62px;right:16%;top:26%;background:linear-gradient(135deg,#22d3ee,#1d4ed8)}
-.planet-data{width:56px;height:56px;right:22%;bottom:18%;background:linear-gradient(135deg,#a855f7,#4c1d95)}
+.cosmos-planet{
+  position:absolute;right:9%;bottom:10%;width:138px;height:138px;border-radius:50%;
+  background:
+    radial-gradient(circle at 32% 28%,rgba(255,207,252,.88),rgba(168,85,247,.46) 24%,rgba(67,12,99,.9) 56%,#080212 78%),
+    #12031e;
+  box-shadow:-18px -12px 42px rgba(236,72,153,.22),0 0 76px rgba(124,58,237,.28);
+}
+.cosmos-planet::after{
+  content:"";position:absolute;inset:12% -26%;border-radius:50%;
+  border-top:10px solid rgba(255,214,255,.18);transform:rotate(-18deg);filter:blur(.5px);
+}
+.cosmos-moon{
+  position:absolute;left:18%;top:22%;width:34px;height:34px;border-radius:50%;
+  background:radial-gradient(circle at 32% 28%,#dff7ff,#38bdf8 45%,#082f49 82%);
+  box-shadow:0 0 22px rgba(34,211,238,.36);
+}
+.cosmos-comet{
+  position:absolute;right:11%;top:18%;width:94px;height:2px;border-radius:999px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.78),rgba(168,85,247,.9));
+  transform:rotate(-28deg);box-shadow:0 0 16px rgba(168,85,247,.7);
+}
+.cosmos-comet::after{
+  content:"";position:absolute;right:-3px;top:-3px;width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 18px #fff;
+}
 .mission-card{
   position:relative;padding:24px;border-radius:22px;background:rgba(8,8,12,.74);
   border:1px solid rgba(124,58,237,.22);backdrop-filter:blur(14px);
@@ -70,8 +106,8 @@
 .mission-status span{padding:8px 10px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.03)}
 .mission-status span:first-child{color:#9ff7d2;border-color:rgba(34,197,94,.25)}
 .mission-status i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;background:#22c55e;box-shadow:0 0 12px #22c55e}
-@keyframes orbitSpin{to{transform:translate(-50%,-50%) rotateX(64deg) rotateZ(360deg)}}
 @keyframes starDrift{to{background-position:220px 180px}}
+@keyframes nebulaBreath{0%,100%{transform:scale(1);opacity:.72}50%{transform:scale(1.06);opacity:.92}}
 .about-block{
   margin:28px 0;padding:24px;background:var(--panel);
   border:1px solid var(--border);border-radius:var(--radius);
@@ -135,6 +171,7 @@
 .section-title{font-size:clamp(1.6rem,4vw,2.3rem);font-weight:800;margin-bottom:24px}
 .section-title::after{content:"";display:block;width:54px;height:4px;border-radius:4px;margin-top:10px;background:linear-gradient(90deg,var(--accent),var(--accent3))}
 @media(max-width:760px){
-  .orbit-hero{grid-template-columns:1fr}
-  .orbit-visual{min-height:240px}
+  .cosmos-hero{grid-template-columns:1fr}
+  .cosmos-visual{min-height:240px}
+  .cosmos-planet{width:104px;height:104px}
 }

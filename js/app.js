@@ -25,16 +25,15 @@ function initParticles() {
       fpsLimit: 60,
       fullScreen: { enable: false },
       particles: {
-        number: { value: 58, density: { enable: true, area: 1200 } },
-        color: { value: ['#7c3aed', '#a855f7', '#22d3ee', '#ffffff'] },
-        links: { enable: true, distance: 150, color: '#7c3aed', opacity: 0.14, width: 1 },
-        move: { enable: true, speed: 0.38, outModes: { default: 'out' } },
-        opacity: { value: { min: 0.18, max: 0.55 } },
-        size: { value: { min: 1, max: 2.6 } }
+        number: { value: 92, density: { enable: true, area: 1200 } },
+        color: { value: ['#ffffff', '#dbeafe', '#f5d0fe', '#bae6fd'] },
+        links: { enable: false },
+        move: { enable: true, speed: 0.12, outModes: { default: 'out' } },
+        opacity: { value: { min: 0.16, max: 0.72 } },
+        size: { value: { min: 0.7, max: 2.2 } }
       },
       interactivity: {
-        events: { onHover: { enable: true, mode: 'grab' } },
-        modes: { grab: { distance: 140, links: { opacity: 0.25 } } }
+        events: { onHover: { enable: false } }
       },
       detectRetina: true
     }
