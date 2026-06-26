@@ -25,12 +25,18 @@ function initParticles() {
       fpsLimit: 60,
       fullScreen: { enable: false },
       particles: {
-        number: { value: 92, density: { enable: true, area: 1200 } },
+        number: { value: 110, density: { enable: true, area: 1200 } },
         color: { value: ['#ffffff', '#dbeafe', '#f5d0fe', '#bae6fd'] },
         links: { enable: false },
-        move: { enable: true, speed: 0.12, outModes: { default: 'out' } },
-        opacity: { value: { min: 0.16, max: 0.72 } },
-        size: { value: { min: 0.7, max: 2.2 } }
+        move: { enable: true, speed: 0.14, outModes: { default: 'out' } },
+        opacity: {
+          value: { min: 0.12, max: 0.7 },
+          animation: { enable: true, speed: 0.5, sync: false, startValue: 'random', mode: 'auto' }
+        },
+        size: {
+          value: { min: 0.6, max: 2.2 },
+          animation: { enable: true, speed: 1.1, sync: false, startValue: 'random', minimumValue: 0.4 }
+        }
       },
       interactivity: {
         events: { onHover: { enable: false } }

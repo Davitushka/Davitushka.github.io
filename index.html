@@ -12,16 +12,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=8" />
+  <link rel="stylesheet" href="styles.css?v=14" />
 </head>
 <body>
   <div id="bg-gradient" aria-hidden="true"></div>
   <video id="bg-video" aria-hidden="true" autoplay muted loop playsinline></video>
+  <div id="sky-fx" aria-hidden="true">
+    <span class="shooting"></span>
+    <span class="shooting"></span>
+    <span class="shooting"></span>
+    <span class="far-object"></span>
+  </div>
   <div id="tsparticles" aria-hidden="true"></div>
 
   <header class="topbar">
     <a class="brand" href="#" data-tab="about">
-      <span class="brand-dot"></span> Senri
+      <span class="brand-dot"></span>
+      <span class="brand-text">
+        <span class="brand-name">Senri</span>
+        <span class="brand-role" data-i18n="brand_role">full-stack dev</span>
+      </span>
+      <span class="brand-badge" data-i18n="brand_badge">open to work</span>
     </a>
     <nav class="tabs" role="tablist">
       <button class="tab is-active" role="tab" data-tab="about" data-i18n="tab_about" aria-selected="true">About</button>
@@ -49,10 +60,10 @@
   <script src="parser-demo.js?v=8"></script>
   <script src="js/data-snippets.js?v=8"></script>
   <script src="js/data-pipeline.js?v=8"></script>
-  <script src="js/i18n.js?v=8"></script>
+  <script src="js/i18n.js?v=14"></script>
   <script src="js/ui.js?v=8"></script>
   <script src="js/modal.js?v=8"></script>
   <script src="js/playground.js?v=8"></script>
-  <script src="js/app.js?v=8"></script>
+  <script src="js/app.js?v=11"></script>
 </body>
 </html>

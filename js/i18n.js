@@ -2,6 +2,7 @@ const I18N = {
   en: {
     tab_about: 'About', tab_projects: 'Projects', tab_playground: 'Playground',
     tab_stack: 'Stack', tab_contact: 'Contact',
+    brand_role: 'full-stack dev', brand_badge: 'open to work',
     eyebrow: 'Full-stack developer @ <a href="https://protonoro.com/" target="_blank" rel="noopener">Protonoro</a>',
     hero: 'Hi, I\'m <span class="grad">Senri</span> <span class="wave">👋</span>',
     lead: 'I build production tooling end to end — Rust parsing pipelines and SIEM backends, React portals, and the Docker/Kubernetes setups that keep them running. Right now I\'m co-building products at <a href="https://protonoro.com/" target="_blank" rel="noopener">Protonoro</a>.',
@@ -51,6 +52,7 @@ const I18N = {
   ru: {
     tab_about: 'Обо мне', tab_projects: 'Проекты', tab_playground: 'Демо',
     tab_stack: 'Стек', tab_contact: 'Контакты',
+    brand_role: 'full-stack dev', brand_badge: 'открыт к работе',
     eyebrow: 'Full-stack разработчик @ <a href="https://protonoro.com/" target="_blank" rel="noopener">Protonoro</a>',
     hero: 'Привет, я <span class="grad">Senri</span> <span class="wave">👋</span>',
     lead: 'Делаю продакшен-инструменты от и до — парсинг-пайплайны на Rust, бэкенды SIEM, порталы на React и связку Docker/Kubernetes. Сейчас строю продукты в <a href="https://protonoro.com/" target="_blank" rel="noopener">Protonoro</a>.',

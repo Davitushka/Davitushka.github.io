@@ -18,7 +18,12 @@
 .contact-ico{font-size:1.6rem}
 .contact-k{color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:1px}
 .contact-v{font-weight:700;color:#fff;word-break:break-all}
-.footer{text-align:center;padding:26px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border)}
+.footer{position:relative;text-align:center;padding:26px;color:var(--muted);font-size:.85rem}
+.footer::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(220px,60%);height:1px;
+  background:linear-gradient(90deg,transparent,rgba(124,58,237,.5),transparent);
+}
 body.modal-open{overflow:hidden}
 .modal{
   position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;

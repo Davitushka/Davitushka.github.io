@@ -4,7 +4,8 @@
 @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .eyebrow{color:var(--muted);font-weight:600;margin-bottom:10px}
 .eyebrow a{color:var(--accent2)}
-.hero-title{font-size:clamp(2.4rem,7vw,4.2rem);line-height:1.05;font-weight:800;letter-spacing:-1px}
+.hero-title{font-size:clamp(2.4rem,7vw,4.2rem);line-height:1.05;font-weight:800;letter-spacing:-1px;text-shadow:0 2px 24px rgba(0,0,0,.85)}
+.eyebrow,.typed-line,.lead{text-shadow:0 1px 14px rgba(0,0,0,.8)}
 .grad{background:linear-gradient(120deg,var(--accent2),var(--accent3));-webkit-background-clip:text;background-clip:text;color:transparent}
 .wave{display:inline-block;animation:wave 2.4s ease-in-out infinite;transform-origin:70% 70%}
 @keyframes wave{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(14deg)}30%{transform:rotate(-8deg)}}
@@ -15,7 +16,7 @@
 .lead a{color:var(--accent2);border-bottom:1px solid var(--line)}
 .mission-card{
   position:relative;margin:32px 0 28px;max-width:560px;
-  padding:24px;border-radius:22px;background:rgba(6,6,10,.66);
+  padding:24px;border-radius:22px;background:rgba(6,6,10,.74);
   border:1px solid rgba(124,58,237,.18);backdrop-filter:blur(14px);
   box-shadow:0 18px 50px rgba(0,0,0,.5);
 }
